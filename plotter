@@ -1,0 +1,25 @@
+#!/usr/bin/python
+import matplotlib.pyplot as plt
+import numpy as np
+import sys
+plt.style.use(u"trygveplot")
+
+
+if len(sys.argv)<2:
+    print "--------------------------------------------"
+    print "Please specify data file: [plotter data.dat]"
+    print "--------------------------------------------"
+    sys.exit()
+file=str(sys.argv[1])
+lol = np.loadtxt(file)
+def column(matrix, i):
+    return [row[i] for row in matrix]
+sort = sorted(lol, key=lambda a : a[0])
+x = column(sort, 0)
+y = column(sort, 1)
+
+#y = sort[:]
+
+plt.loglog(x,y, "o")
+plt.title(file)
+plt.show()
