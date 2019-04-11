@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/Users/svalheim/anaconda3/bin/python
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
@@ -6,11 +6,13 @@ plt.style.use(u"trygveplot")
 
 
 if len(sys.argv)<2:
-    print "--------------------------------------------"
-    print "Please specify data file: [plotter data.dat]"
-    print "--------------------------------------------"
+    print("--------------------------------------------")
+    print("Please specify data file: [plotter data.dat]")
+    print("--------------------------------------------")
     sys.exit()
 file=str(sys.argv[1])
+import string
+fname = file.replace('.dat', '')
 lol = np.loadtxt(file)
 def column(matrix, i):
     return [row[i] for row in matrix]
@@ -19,7 +21,13 @@ x = column(sort, 0)
 y = column(sort, 1)
 
 #y = sort[:]
+plt.grid()
+#plt.loglog(x,y, "o")
 
-plt.loglog(x,y, "o")
-plt.title(file)
+plt.plot(x,y/max(y))
+plt.ylabel("Relative power")
+plt.xlabel("Frequency [GHz]")
+plt.title(fname)
+plt.xlim([110,180])
+plt.savefig(fname+".png")
 plt.show()

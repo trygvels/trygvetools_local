@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
-plt.style.use(u"trygveplot")
+#plt.style.use(u"trygveplot")
 
 
 if len(sys.argv)<2:
